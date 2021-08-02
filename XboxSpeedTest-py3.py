@@ -41,7 +41,7 @@ def subprocess_call(proc_name, argv):
         process.wait()
         output, unused_err = process.communicate()
         ret_code = process.poll()
-        ret_msg = output
+        ret_msg = output.decode('utf-8')
     except Exception as ex :
         ret_code = 1
         ret_msg = "0"
