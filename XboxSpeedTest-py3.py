@@ -77,18 +77,13 @@ def main():
         argv = createArgv(ip_addr)
         ret_x = subprocess_call(CURL_PATH, argv)
         spd_float = 0
-        if (ret_x[0] == 0):
-            spd = trim_str(str(ret_x[1]))
+        spd = trim_str(str(ret_x[1]))
             try:
                 spd_float = int(float(spd) / 1024.0)
             except:
                 spd_float = 0
                 pass
             sys.stdout.write(" ....... %dKB/s"%(spd_float))
-        else:
-            sys.stdout.write(" ....... %sKB/s"%("0.0"))
-            pass
-
         sys.stdout.write(" \n")
         ip_dicts[ip_addr] = spd_float
     best_ips = sorted(ip_dicts.items(),key=lambda x:x[1],reverse=True)
